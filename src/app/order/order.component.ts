@@ -36,19 +36,20 @@ export class OrderComponent implements OnInit {
             numero: this.fb.control('', [Validators.required, Validators.pattern(this.enderecoNumeroPadrao)]),
             complemento: this.fb.control(''),
             opcaoDePagamento: this.fb.control('', [Validators.required]),
-        }, { Validator: OrderComponent.emailsEqualsTo });
+        }, { validator: OrderComponent.emailsEqualsTo });
     }
 
     static emailsEqualsTo(group: AbstractControl): { [key: string]: boolean } {
         const email = group.get('email');
         const emailConfirmacao = group.get('emailConfirmacao');
-        if (!email.value || !emailConfirmacao.value) {
+        if (!email || !emailConfirmacao) {
             return undefined;
         }
 
         if (email.value !== emailConfirmacao.value) {
             return { emailsNotMatch: true };
         }
+        return undefined;
     }
 
     cartItems(): CartItem[] {
