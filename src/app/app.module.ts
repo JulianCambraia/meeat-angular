@@ -41,9 +41,6 @@ import { SharedModule } from './shared/shared.module';
         ShoppingCartComponent,
         MenuItemComponent,
         ReviewsComponent,
-        OrderComponent,
-        OrderItemsComponent,
-        DeliveryCostsComponent,
         OrderSummaryComponent,
     ],
     imports: [
