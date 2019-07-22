@@ -1,36 +1,39 @@
 import { AfterContentInit, Component, ContentChild, Input, OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { NgModel, FormControlName } from '@angular/forms';
 
 @Component({
-  selector: 'mt-input-container',
-  templateUrl: './input-container.component.html'
+    selector: 'mt-input-container',
+    templateUrl: './input-container.component.html'
 })
 export class InputContainerComponent implements OnInit, AfterContentInit {
 
-  @Input() label: string;
-  @Input() errorMessage: string;
+    @Input() label: string;
 
-  inputGenerico: any;
+    @Input() errorMessage: string;
 
-  @ContentChild(NgModel) model: NgModel;
+    inputGenerico: any;
 
-  constructor() { }
+    @ContentChild(NgModel) model: NgModel;
 
-  ngOnInit() {
-  }
+    @ContentChild(FormControlName) control: FormControlName;
 
-  ngAfterContentInit(): void {
-    this.inputGenerico = this.model;
-    if (this.inputGenerico === undefined) {
-      throw new Error("Esse component precisa ser usado com a propriedade NgModel.");
+    constructor() { }
+
+    ngOnInit() {
     }
-  }
 
-  hasSuccess(): boolean {
-    return this.inputGenerico.valid && (this.inputGenerico.dirty || this.inputGenerico.touched);
-  }
+    ngAfterContentInit(): void {
+        this.inputGenerico = this.model || this.control;
+        if (this.inputGenerico === undefined) {
+            throw new Error("Esse component precisa ser usado com a propriedade NgModel ou FormControlName.");
+        }
+    }
 
-  hasError(): boolean {
-    return this.inputGenerico.invalid && (this.inputGenerico.dirty || this.inputGenerico.touched);
-  }
+    hasSuccess(): boolean {
+        return this.inputGenerico.valid && (this.inputGenerico.dirty || this.inputGenerico.touched);
+    }
+
+    hasError(): boolean {
+        return this.inputGenerico.invalid && (this.inputGenerico.dirty || this.inputGenerico.touched);
+    }
 }

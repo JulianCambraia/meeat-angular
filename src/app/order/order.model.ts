@@ -1,5 +1,8 @@
 class Order {
-    constructor(public endereco: string,
+    constructor(public nome: string,
+        public email: string,
+        public emailConfirmacao: string,
+        public endereco: string,
         public numero: string,
         public complemento: string,
         public opcaoDePagameno: string,
