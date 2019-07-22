@@ -25,6 +25,7 @@ import { RestaurantsService } from './restaurants/restaurants.service';
 import { InputContainerComponent } from './shared/input/input-container.component';
 import { RadioComponent } from './shared/radio/radio.component';
 import { RatingComponent } from './shared/rating/rating.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -41,18 +42,14 @@ import { RatingComponent } from './shared/rating/rating.component';
         MenuItemComponent,
         ReviewsComponent,
         OrderComponent,
-        InputContainerComponent,
-        RadioComponent,
         OrderItemsComponent,
         DeliveryCostsComponent,
         OrderSummaryComponent,
-        RatingComponent
     ],
     imports: [
         BrowserModule,
         HttpModule,
-        FormsModule,
-        ReactiveFormsModule,
+        SharedModule,
         RouterModule.forRoot(ROUTES)
     ],
     providers: [RestaurantsService, ShoppingCartService, OrderService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
