@@ -17,6 +17,7 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -33,6 +34,7 @@ import { SharedModule } from './shared/shared.module';
         MenuItemComponent,
         ReviewsComponent,
         OrderSummaryComponent,
+        NotFoundComponent,
     ],
     imports: [
         BrowserModule,
