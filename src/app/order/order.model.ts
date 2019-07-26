@@ -6,7 +6,8 @@ class Order {
         public numero: string,
         public complemento: string,
         public opcaoDePagameno: string,
-        public orderItems: OrderItem[] = []
+        public orderItems: OrderItem[] = [],
+        public id?: string,
     ) { }
 }
 
