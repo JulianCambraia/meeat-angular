@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantsService } from './restaurants.service';
@@ -47,7 +48,7 @@ export class RestaurantsComponent implements OnInit {
             .debounceTime(500)
             .distinctUntilChanged()
             .switchMap(searchTerm =>
-                this.restaurantsService.restaurants(searchTerm))
+                this.restaurantsService.restaurants(searchTerm).catch(error => Observable.from([])))
             .subscribe(restaurants => this.restaurants = restaurants);
 
         this.restaurantsService.restaurants().subscribe(res => {
