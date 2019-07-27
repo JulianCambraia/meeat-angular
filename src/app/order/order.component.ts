@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { CartItem } from "app/restaurant-detail/shopping-cart/cart-item.model";
-import { RadioOption } from "app/shared/radio/radio-option.model";
-import { FormGroup, FormBuilder, Form, FormControl, Validators, AbstractControl } from "@angular/forms";
-
-import { Order, OrderItem } from "./order.model";
-import { OrderService } from "./order.service";
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
+import { RadioOption } from 'app/shared/radio/radio-option.model';
+
+import { Order, OrderItem } from './order.model';
+import { OrderService } from './order.service';
 
 @Component({
     selector: "mt-order",
@@ -16,6 +16,8 @@ export class OrderComponent implements OnInit {
     orderForm: FormGroup;
 
     delivery: number = 8;
+
+    orderId: string;
 
     paymentOptions: RadioOption[] = [
         { label: "Dinheiro", value: "MON" },
@@ -76,9 +78,17 @@ export class OrderComponent implements OnInit {
         order.orderItems = this.cartItems().map(
             (item: CartItem) => new OrderItem(item.quantity, item.menuItem.id)
         );
-        this.orderService.checkOrder(order).subscribe((orderId: string) => {
-            this.router.navigate(['/order-summary']);
-            this.orderService.clear();
-        });
+        this.orderService.checkOrder(order)
+            .do((orderId: string) => {
+                this.orderId = orderId;
+            })
+            .subscribe((orderId: string) => {
+                this.router.navigate(['/order-summary']);
+                this.orderService.clear();
+            });
+    }
+
+    isOrderCompleted(): boolean {
+        return this.orderId != undefined;
     }
 }
