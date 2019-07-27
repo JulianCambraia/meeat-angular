@@ -20,6 +20,7 @@ import { RestaurantComponent } from './restaurants/restaurant/restaurant.compone
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
 
 
 
@@ -38,6 +39,7 @@ import { LoginComponent } from './security/login/login.component';
         OrderSummaryComponent,
         NotFoundComponent,
         LoginComponent,
+        UserDetailComponent,
     ],
     imports: [
         BrowserModule,
