@@ -11,4 +11,4 @@ if (environment.production) {
 }
 
 
-platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true });
+platformBrowserDynamic().bootstrapModule(AppModule); //, { preserveWhitespaces: true });
