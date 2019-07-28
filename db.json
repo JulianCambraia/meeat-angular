@@ -521,6 +521,86 @@
         }
       ],
       "id": 25
+    },
+    {
+      "nome": "Amanda Carla Simões",
+      "email": "amanda@gmail.com",
+      "emailConfirmacao": "amanda@gmail.com",
+      "endereco": "Rua 7 de Setembro",
+      "numero": "33",
+      "complemento": "Apto 401",
+      "opcaoDePagamento": "MON",
+      "orderItems": [
+        {
+          "quantidade": 1,
+          "menuId": "cup-cake"
+        },
+        {
+          "quantidade": 1,
+          "menuId": "donut"
+        },
+        {
+          "quantidade": 1,
+          "menuId": "bread"
+        }
+      ],
+      "id": 26
+    },
+    {
+      "nome": "Amanda",
+      "email": "amanda@gmail.com",
+      "emailConfirmacao": "amanda@gmail.com",
+      "endereco": "Rua 1",
+      "numero": "33",
+      "complemento": null,
+      "opcaoDePagamento": "MON",
+      "orderItems": [
+        {
+          "quantidade": 1,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 27
+    },
+    {
+      "nome": "Amanda",
+      "email": "amanda@gmail.com",
+      "emailConfirmacao": "amanda@gmail.com",
+      "endereco": "Rua 3",
+      "numero": "33",
+      "complemento": null,
+      "opcaoDePagamento": "REF",
+      "orderItems": [
+        {
+          "quantidade": 1,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 28
+    },
+    {
+      "nome": "Amanda Bueno Brandão",
+      "email": "amanda@gmail.com",
+      "emailConfirmacao": "amanda@gmail.com",
+      "endereco": "Rua Pedro II",
+      "numero": "100",
+      "complemento": null,
+      "opcaoDePagamento": "DEB",
+      "orderItems": [
+        {
+          "quantidade": 1,
+          "menuId": "zlasagna"
+        },
+        {
+          "quantidade": 1,
+          "menuId": "greensandwich"
+        },
+        {
+          "quantidade": 1,
+          "menuId": "ceasar"
+        }
+      ],
+      "id": 29
     }
   ]
 }

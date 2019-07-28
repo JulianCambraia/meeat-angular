@@ -1,4 +1,8 @@
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
+import locatePt from '@angular/common/locales/pt';
+
+registerLocaleData(locatePt, 'pt');
+
 import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID, NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -51,7 +55,7 @@ import { SharedModule } from './shared/shared.module';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        { provide: LOCALE_ID, useValue: 'pt-BR' },
+        { provide: LOCALE_ID, useValue: 'pt' },
         { provide: ErrorHandler, useClass: ApplicationErrorHandler }
     ],
     bootstrap: [AppComponent]

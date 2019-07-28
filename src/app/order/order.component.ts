@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { RadioOption } from 'app/shared/radio/radio-option.model';
+import { tap } from 'rxjs/operators';
 
 import { Order, OrderItem } from './order.model';
 import { OrderService } from './order.service';
@@ -14,6 +15,8 @@ import { OrderService } from './order.service';
 export class OrderComponent implements OnInit {
 
     orderForm: FormGroup;
+
+    order: Order;
 
     delivery: number = 8;
 
@@ -30,15 +33,19 @@ export class OrderComponent implements OnInit {
     constructor(private orderService: OrderService, private router: Router, private fb: FormBuilder) { }
 
     ngOnInit() {
-        this.orderForm = this.fb.group({
-            nome: this.fb.control('', [Validators.required, Validators.minLength(5)]),
-            email: this.fb.control('', [Validators.required, Validators.email]),
-            emailConfirmacao: this.fb.control('', [Validators.required, Validators.email]),
-            endereco: this.fb.control('', [Validators.required, Validators.minLength(5)]),
-            numero: this.fb.control('', [Validators.required, Validators.pattern(this.enderecoNumeroPadrao)]),
-            complemento: this.fb.control(''),
-            opcaoDePagamento: this.fb.control('', [Validators.required]),
-        }, { validator: OrderComponent.emailsEqualsTo });
+        this.order = new Order();
+        this.orderForm = new FormGroup({
+            nome: new FormControl(this.order.nome, [Validators.required, Validators.minLength(5)]),
+            email: new FormControl(this.order.email, [Validators.required, Validators.email]),
+            emailConfirmacao: new FormControl(this.order.emailConfirmacao, [Validators.required, Validators.email]),
+            endereco: new FormControl(this.order.endereco, [Validators.required, Validators.minLength(5)]),
+            numero: new FormControl(this.order.numero, [Validators.required, Validators.pattern(this.enderecoNumeroPadrao)]),
+            complemento: new FormControl(this.order.complemento),
+            opcaoDePagamento: new FormControl(null, [Validators.required]),
+        }, { validators: [OrderComponent.emailsEqualsTo], updateOn: 'blur' });
+
+        console.log(this.orderForm);
+
     }
 
     static emailsEqualsTo(group: AbstractControl): { [key: string]: boolean } {
@@ -79,9 +86,9 @@ export class OrderComponent implements OnInit {
             (item: CartItem) => new OrderItem(item.quantity, item.menuItem.id)
         );
         this.orderService.checkOrder(order)
-            .do((orderId: string) => {
+            .pipe(tap((orderId: string) => {
                 this.orderId = orderId;
-            })
+            }))
             .subscribe((orderId: string) => {
                 this.router.navigate(['/order-summary']);
                 this.orderService.clear();
