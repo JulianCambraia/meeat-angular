@@ -1,14 +1,13 @@
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MEAT_API } from '../app.api';
-import { ErrorHandler } from '../app.error-handler';
 import { MenuItem } from '../restaurant-detail/menu-item/menu.item.model';
 import { Restaurant } from './restaurant/restaurant.model';
-import { HttpClientModule, HttpParams, HttpClient } from '@angular/common/http';
 
 
 @Injectable()

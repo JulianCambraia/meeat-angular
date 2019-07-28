@@ -31,7 +31,7 @@ import { NotificationService } from '../notification.service';
 })
 export class SnackbarComponent implements OnInit {
 
-    message: string = 'Hello There!';
+    message: string;
 
     snackVisibility: string = 'hidden';
 
